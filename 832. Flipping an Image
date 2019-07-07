@@ -24,3 +24,18 @@ class Solution {
         return A;
     }
 }
+
+class Solution {
+    public int[][] flipAndInvertImage(int[][] A) {
+        int len = A.length;
+        for (int x = 0; x < len; x++) {
+            for (int y = 0; y < (len + 1) / 2; y++) {
+                int temp = 1 - A[x][len - y - 1];
+                A[x][len - y - 1] = 1 - A[x][y];
+                A[x][y] = temp;
+            }
+        }
+        
+        return A;
+    }
+}
