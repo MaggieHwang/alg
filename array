@@ -1,0 +1,26 @@
+832. Flipping an Image
+https://leetcode.com/problems/flipping-an-image/
+
+level:easy
+
+Solution:
+class Solution {
+    public int[][] flipAndInvertImage(int[][] A) {
+        int len = A.length;
+        int r = len % 2;
+        for (int x = 0; x < len; x++) {
+            for (int y = 0; y < len / 2; y++) {
+                int a1 = 1 - A[x][len - y - 1];
+                int a2 = 1 - A[x][y];
+                A[x][y] = a1;
+                A[x][len - y - 1] = a2;
+            }
+            
+            if (r == 1) {
+                A[x][len / 2] = 1 - A[x][len / 2];
+            }
+        }
+        
+        return A;
+    }
+}
