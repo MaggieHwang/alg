@@ -1,0 +1,44 @@
+695. Max Area of Island
+https://leetcode.com/problems/max-area-of-island/
+
+Level: medium
+
+Tips: recursive. area(x,y) = 1 + area(x-1,y) + area(x+1,y) + area(x,y-1) + area(x,y+1)
+
+Solution:
+[Java]
+class Solution {
+    public int maxAreaOfIsland(int[][] grid) {
+        
+        int maxArea = 0;
+        
+        for (int x = 0; x < grid.length; x++) {
+            for (int y = 0; y < grid[0].length; y++) {
+                if (grid[x][y] == 0) {
+                    continue;
+                }
+                
+                int area = sum(grid, x, y);
+                if (maxArea < area) {
+                    maxArea = area;
+                }
+            }
+        }
+        
+        return maxArea;
+    }
+    
+    private int sum(int[][] grid, int x, int y) {
+        if (x < 0 || x >= grid.length 
+            || y < 0 || y >= grid[0].length 
+            || grid[x][y] == 0) {
+            return 0;
+        }
+        
+        grid[x][y] = 0;
+        return 1 + sum(grid, x - 1, y) 
+            + sum(grid, x + 1, y) 
+            + sum(grid, x, y - 1) 
+            + sum(grid, x, y + 1); 
+    }
+}
